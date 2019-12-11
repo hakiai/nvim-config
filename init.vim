@@ -8,13 +8,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-repeat' "ドットによるリピートを強力にする
   Plug 'tpope/vim-commentary' "gccで一気にコメントアウト
   Plug 'vim-airline/vim-airline' "ステータスバーをいい感じに
-  Plug 'jiangmiao/auto-pairs' "対となる括弧を追加/削除してくれる
   Plug 'alvan/vim-closetag' "htmlタグを閉じてくれる
   Plug 'w0rp/ale' "シンタックスチェック
   Plug 'Yggdroot/indentLine' "インデント見やすく
   Plug 'easymotion/vim-easymotion' "移動プラグイン
   Plug 'LeafCage/yankround.vim' "Ctrl + pで過去のクリップボード参照
-  Plug 'kien/ctrlp.vim' "vimクリップボード
+  Plug 'cohama/lexima.vim' "カッコ補完
+  Plug 'Shougo/deoplete.nvim' "補完
+  Plug 'Shougo/deoplete-lsp'
+  Plug 'prabirshrestha/vim-lsp'
 
 call plug#end()
 
@@ -142,8 +144,6 @@ nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 "" 履歴取得数
 let g:yankround_max_history = 50
-""履歴一覧(kien/ctrlp.vim)
-nnoremap <Leader>p :<C-u>CtrlPYankRound<CR>
 
 "===== その他 =====
 "履歴を10000件保存
