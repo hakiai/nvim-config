@@ -109,3 +109,6 @@ hook_add = '''
     \'z'    : '#H',
     \'options' : {'status-justify':'left'}}
 '''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
