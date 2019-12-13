@@ -3,6 +3,9 @@ repo = 'ryanoasis/vim-devicons' # ファイルアイコン
 
 [[plugins]]
 repo = 'scrooloose/nerdtree' # ファイラ
+hook_add = '''
+  nmap sf :NERDTreeToggle<Return>
+'''
 
 [[plugins]]
 repo = 'jistr/vim-nerdtree-tabs' # ファイラを便利に
@@ -24,10 +27,28 @@ repo = 'tpope/vim-commentary' # gccで一気にコメントアウト
 
 [[plugins]]
 repo = 'vim-airline/vim-airline' # ステータスバーをいい感じに
+hook_add = '''
+  let g:airline_powerline_fonts = 1
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#buffer_idx_mode = 1
+  let g:airline#extensions#whitespace#mixed_indent_algo = 1
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes' #vim-airlineテーマ
+hook_add = '''
+'''
 
 [[plugins]]
 repo = 'alvan/vim-closetag' # htmlタグを閉じてくれる
-
+hook_add = '''
+  let g:closetag_filenames = '*.html,*.vue,*.erb,*.php'
+'''
 [[plugins]]
 repo = 'w0rp/ale' # シンタックスチェック
 
@@ -36,9 +57,29 @@ repo = 'Yggdroot/indentLine' # インデント見やすく
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion' # 移動プラグイン
+hook_add = '''
+  let g:EasyMotion_do_mapping = 0
+  map  <Leader>f <Plug>(easymotion-bd-f)
+  nmap <Leader>f <Plug>(easymotion-overwin-f)
+  nmap <Leader>s <Plug>(easymotion-overwin-f2)
+  vmap <Leader>s <Plug>(easymotion-bd-f2)
+  map <Leader>L <Plug>(easymotion-bd-jk)
+  nmap <Leader>L <Plug>(easymotion-overwin-line)
+  map  <Leader>w <Plug>(easymotion-bd-w)
+
+'''
 
 [[plugins]]
 repo = 'LeafCage/yankround.vim' # Ctrl + pで過去のクリップボード参照
+hook_add = '''
+  nmap p <Plug>(yankround-p)
+  nmap P <Plug>(yankround-P)
+  nmap <C-p> <Plug>(yankround-prev)
+  nmap <C-n> <Plug>(yankround-next)
+  "" 履歴取得数
+  let g:yankround_max_history = 50
+
+'''
 
 [[plugins]]
 repo = 'cohama/lexima.vim' # カッコ補完
@@ -54,3 +95,17 @@ repo = 'prabirshrestha/vim-lsp' # LSP
 
 [[plugins]]
 repo = 'hdima/python-syntax' # python-syntax
+
+[[plugins]]
+repo = 'edkolev/tmuxline.vim'
+hook_add = '''
+  let g:tmuxline_preset = {
+    \'a'    : '#S',
+    \'c'    : ['#(whoami)'],
+    \'win'  : ['#I', '#W'],
+    \'cwin' : ['#I', '#W', '#F'],
+    \'x'    : '#(date)',
+    \'y'    : ['%R', '%a', '%Y'],
+    \'z'    : '#H',
+    \'options' : {'status-justify':'left'}}
+'''
