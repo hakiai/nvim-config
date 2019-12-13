@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 "  Plug 'shougo/vimfiler' "vimfiler
-"  Plug 'shougo/unite.vim' "vimfilerの依存関係
+  Plug 'shougo/unite.vim' "検索を早く
   Plug 'scrooloose/nerdtree' "ファイラ
   Plug 'ryanoasis/vim-devicons' "ファイルアイコン
   Plug 'tpope/vim-surround' "カッコの挿入を便利に
@@ -90,12 +90,11 @@ nmap th :tabprev<Return>
 nmap tl :tabnext<Return>
 
 "インサートモード
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-inoremap <C-d> <Delete>
-inoremap <C-b> <C-h>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-h> <Delete>
 
 "jキーを二度押しでESCキー
 inoremap <silent> jj <Esc>

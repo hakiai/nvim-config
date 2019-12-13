@@ -1,0 +1,56 @@
+[[plugins]]
+repo = 'ryanoasis/vim-devicons' # ファイルアイコン
+
+[[plugins]]
+repo = 'scrooloose/nerdtree' # ファイラ
+
+[[plugins]]
+repo = 'jistr/vim-nerdtree-tabs' # ファイラを便利に
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+
+[[plugins]]
+repo = 'tpope/vim-surround' # カッコの挿入を便利に
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter' # Gitの変更を表示
+
+[[plugins]]
+repo = 'tpope/vim-repeat' # ドットによるリピートを強力にする
+
+[[plugins]]
+repo = 'tpope/vim-commentary' # gccで一気にコメントアウト
+
+[[plugins]]
+repo = 'vim-airline/vim-airline' # ステータスバーをいい感じに
+
+[[plugins]]
+repo = 'alvan/vim-closetag' # htmlタグを閉じてくれる
+
+[[plugins]]
+repo = 'w0rp/ale' # シンタックスチェック
+
+[[plugins]]
+repo = 'Yggdroot/indentLine' # インデント見やすく
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion' # 移動プラグイン
+
+[[plugins]]
+repo = 'LeafCage/yankround.vim' # Ctrl + pで過去のクリップボード参照
+
+[[plugins]]
+repo = 'cohama/lexima.vim' # カッコ補完
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim' # 補完
+
+[[plugins]]
+repo = 'Shougo/deoplete-lsp' # 補完をLSPと連携
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp' # LSP
+
+[[plugins]]
+repo = 'hdima/python-syntax' # python-syntax
