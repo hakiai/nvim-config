@@ -132,8 +132,14 @@ for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
 endfor
 
 "モード切り替えを早く
-set ttimeoutlen=50
+set ttimeoutlen=1
 
 "クリップボード共有
 set clipboard=unnamed
 
+" ノーマルモードに入るとIME off
+let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
+augroup MyIMEGroup
+  autocmd!
+  autocmd InsertLeave * :call system(g:imeoff)
+augroup END
