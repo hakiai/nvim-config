@@ -105,6 +105,10 @@ map sL <C-w>L
 nmap st :tabnew<Return>
 nmap th :tabprev<Return>
 nmap tl :tabnext<Return>
+nnoremap <Leader>w :w
+nnoremap <Leader>q :q
+nnoremap <Leader>wq :wq
+nnoremap <Leader>q! :q!
 
 "インサートモード
 inoremap <C-n> <Down>
