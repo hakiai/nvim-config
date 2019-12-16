@@ -92,23 +92,27 @@ nnoremap J 10j
 nnoremap K 10k
 nnoremap H ^
 nnoremap L $
-nmap ss :split<Return><C-w>w
-nmap sv :vsplit<Return><C-w>w
-map sh <C-w>h
-map sk <C-w>k
-map sj <C-w>j
-map sl <C-w>l
-map sH <C-w>H
-map sK <C-w>K
-map sJ <C-w>J
-map sL <C-w>L
-nmap st :tabnew<Return>
-nmap th :tabprev<Return>
-nmap tl :tabnext<Return>
+nnoremap ss :split<Return><C-w>w
+nnoremap sv :vsplit<Return><C-w>w
+noremap sh <C-w>h
+noremap sk <C-w>k
+noremap sj <C-w>j
+noremap sl <C-w>l
+noremap sH <C-w>H
+noremap sK <C-w>K
+noremap sJ <C-w>J
+noremap sL <C-w>L
+nnoremap st :tabnew<Return>
+nnoremap th :tabprev<Return>
+nnoremap tl :tabnext<Return>
 nnoremap <Leader>w :w
 nnoremap <Leader>q :q
 nnoremap <Leader>wq :wq
 nnoremap <Leader>q! :q!
+nnoremap ; :
+nnoremap : ;
+nnoremap n nzz
+nnoremap N Nzz
 
 "インサートモード
 inoremap <C-n> <Down>
@@ -128,6 +132,10 @@ set nobackup "バックアップファイルを作らない
 set noswapfile "スワップファイルを作らない
 set autoread "編集中のファイルが変更されたら自動で読み直す
 set hidden "バッファが編集中でもそのほかのファイルを開けるようにする
+
+"python path
+let g:python_host_prog='~/.pyenv/versions/neovim-2/bin/python'
+let g:python3_host_prog='~/.pyenv/versions/neovim-3/bin/python'
 
 "補完機能
 set completeopt=menuone

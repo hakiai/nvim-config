@@ -5,7 +5,7 @@ repo = 'ryanoasis/vim-devicons' # ファイルアイコン
 [[plugins]]
 repo = 'scrooloose/nerdtree' # ファイラ
 hook_add = '''
-  nmap sf :NERDTreeToggle<Return>
+  nnoremap sf :NERDTreeToggle<Return>
 '''
 
 
@@ -73,13 +73,13 @@ repo = 'Yggdroot/indentLine' # インデント見やすく
 repo = 'easymotion/vim-easymotion' # 移動プラグイン
 hook_add = '''
   let g:EasyMotion_do_mapping = 0
-  map  <Leader>f <Plug>(easymotion-bd-f)
-  nmap <Leader>f <Plug>(easymotion-overwin-f)
-  nmap <Leader>s <Plug>(easymotion-overwin-f2)
-  vmap <Leader>s <Plug>(easymotion-bd-f2)
-  map <Leader>L <Plug>(easymotion-bd-jk)
-  nmap <Leader>L <Plug>(easymotion-overwin-line)
-  map  <Leader>w <Plug>(easymotion-bd-w)
+  noremap  <Leader>f <Plug>(easymotion-bd-f)
+  nnoremap <Leader>f <Plug>(easymotion-overwin-f)
+  nnoremap <Leader>s <Plug>(easymotion-overwin-f2)
+  vnoremap <Leader>s <Plug>(easymotion-bd-f2)
+  nnoremap <Leader>L <Plug>(easymotion-bd-jk)
+  nnoremap <Leader>L <Plug>(easymotion-overwin-line)
+  noremap  <Leader>w <Plug>(easymotion-bd-w)
 
 '''
 
