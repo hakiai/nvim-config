@@ -46,6 +46,7 @@ set visualbell "ビープ音を視覚表示
 set laststatus=2 "ステータスを表示
 set ruler "カーソル位置を表示
 syntax on "コードに色をつける
+colorscheme pablo
 
 
 "===== 文字、カーソル設定 =====
@@ -103,8 +104,10 @@ noremap sK <C-w>K
 noremap sJ <C-w>J
 noremap sL <C-w>L
 nnoremap st :tabnew<Return>
-nnoremap th :tabprev<Return>
-nnoremap tl :tabnext<Return>
+nnoremap tk :tabprev<Return>
+nnoremap tj :tabnext<Return>
+nnoremap th :bprev<CR>
+nnoremap tl :bnext<CR>
 nnoremap <Leader>w :w
 nnoremap <Leader>q :q
 nnoremap <Leader>wq :wq
@@ -133,10 +136,6 @@ set noswapfile "スワップファイルを作らない
 set autoread "編集中のファイルが変更されたら自動で読み直す
 set hidden "バッファが編集中でもそのほかのファイルを開けるようにする
 
-"python path
-let g:python_host_prog='~/.pyenv/versions/neovim-2/bin/python'
-let g:python3_host_prog='~/.pyenv/versions/neovim-3/bin/python'
-
 "補完機能
 set completeopt=menuone
 for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
@@ -155,3 +154,8 @@ augroup MyIMEGroup
   autocmd!
   autocmd InsertLeave * :call system(g:imeoff)
 augroup END
+
+"python path
+let g:python_host_prog='~/.pyenv/versions/neovim-2/bin/python'
+let g:python3_host_prog='~/.pyenv/versionsslneovim-3/bin/python'
+

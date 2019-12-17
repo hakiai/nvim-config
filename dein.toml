@@ -14,7 +14,7 @@ repo = 'jistr/vim-nerdtree-tabs' # ファイラを便利に
 
 
 [[plugins]]
-repo = 'Shougo/defx.nvim'
+repo = 'Shougo/defx.nvim' # Shougoのファイラ。いつか使う
 
 
 [[plugins]]
@@ -104,17 +104,12 @@ repo = 'cohama/lexima.vim' # カッコ補完
 [[plugins]]
 repo = 'Shougo/deoplete.nvim' # 補完
 
-
 [[plugins]]
 repo = 'Shougo/deoplete-lsp' # 補完をLSPと連携
 
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp' # LSP
-
-
-[[plugins]]
-repo = 'hdima/python-syntax' # python-syntax
 
 
 [[plugins]]

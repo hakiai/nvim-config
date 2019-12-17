@@ -1,2 +1,17 @@
-/* =====JavaScript===== */
+# ===== JavaScript =====
 [[plugins]]
+repo = 'prettier/vim-prettier'
+on_ft = ['javascript', 'typescript', 'vue', 'css', 'scss', 'json', 'markdown']
+hook_add = '''
+  nnoremap <Leader>p :Prettier<CR>
+  let g:ale_fixers = {
+  \  '*': ['remove_trailing_lines', 'trim_whitespace'],
+  \  'javascript': ['eslint'],
+  \}
+'''
+
+
+# ===== Python =====
+[[plugins]]
+repo = 'hdima/python-syntax' # python-syntax
+
