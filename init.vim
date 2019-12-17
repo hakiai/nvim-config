@@ -108,10 +108,6 @@ nnoremap tk :tabprev<Return>
 nnoremap tj :tabnext<Return>
 nnoremap th :bprev<CR>
 nnoremap tl :bnext<CR>
-nnoremap <Leader>w :w
-nnoremap <Leader>q :q
-nnoremap <Leader>wq :wq
-nnoremap <Leader>q! :q!
 nnoremap ; :
 nnoremap : ;
 nnoremap n nzz
