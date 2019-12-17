@@ -28,6 +28,8 @@ if dein#load_state(s:dein_dir)
   call dein#save_state()
 endif
 
+call map(dein#check_clean(), "delete(v:val, 'rf')")
+
 filetype plugin indent on
 syntax enable
 
@@ -47,6 +49,8 @@ set laststatus=2 "ステータスを表示
 set ruler "カーソル位置を表示
 syntax on "コードに色をつける
 colorscheme pablo
+highlight Pmenu ctermbg=17
+highlight Search ctermfg=17
 
 
 "===== 文字、カーソル設定 =====
@@ -104,14 +108,15 @@ noremap sK <C-w>K
 noremap sJ <C-w>J
 noremap sL <C-w>L
 nnoremap st :tabnew<Return>
-nnoremap tk :tabprev<Return>
-nnoremap tj :tabnext<Return>
-nnoremap th :bprev<CR>
-nnoremap tl :bnext<CR>
+nnoremap th :tabprev<Return>
+nnoremap tl :tabnext<Return>
+nnoremap sp :bprev<CR>
+nnoremap sn :bnext<CR>
 nnoremap ; :
 nnoremap : ;
 nnoremap n nzz
 nnoremap N Nzz
+nnoremap x "_x
 
 "インサートモード
 inoremap <C-n> <Down>
@@ -153,5 +158,5 @@ augroup END
 
 "python path
 let g:python_host_prog='~/.pyenv/versions/neovim-2/bin/python'
-let g:python3_host_prog='~/.pyenv/versionsslneovim-3/bin/python'
+let g:python3_host_prog='~/.pyenv/versions/neovim-3/bin/python'
 
