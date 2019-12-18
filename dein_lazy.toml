@@ -14,4 +14,10 @@ hook_add = '''
 # ===== Python =====
 [[plugins]]
 repo = 'hdima/python-syntax' # python-syntax
+on_ft = ['python']
 
+
+# ===== toml =====
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']

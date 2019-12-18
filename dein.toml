@@ -3,14 +3,48 @@ repo = 'ryanoasis/vim-devicons' # ファイルアイコン
 
 
 [[plugins]]
-repo = 'scrooloose/nerdtree'
+repo = 'scrooloose/nerdtree' # IDEっぽいファイラ
 hook_add = '''
   nnoremap <silent>sf :NERDTreeToggle<CR>
 '''
 
 
 [[plugins]]
-repo = 'Xuyuanp/nerdtree-git-plugin'
+repo = 'Xuyuanp/nerdtree-git-plugin' # nerdtreeにGitの表示を追加
+
+
+[[plugins]]
+repo = '/usr/local/opt/fzf' # fzf.vimの依存関係
+
+
+[[plugins]]
+repo = 'junegunn/fzf.vim' # 曖昧検索
+hook_add = '''
+  " ripgrepで検索中、?を押すとプレビュー:
+  command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+  " Filesコマンドにもプレビューを出す
+  command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+  nnoremap ,f :Files<CR>
+  nnoremap ,b :Buffers<CR>
+  nnoremap ,g :GFiles<CR>
+  nnoremap ,l :BLines<CR>
+  nnoremap ,a :Ag<CR>
+  nnoremap ,k :bd<CR>
+  command! FZFMru call fzf#run({
+    \  'source':  v:oldfiles,
+    \  'sink':    'e',
+    \  'options': '-m -x +s',
+    \  'down':    '40%'})
+  nnoremap <Leader>r :FZFMru<CR>
+'''
 
 
 [[plugins]]
@@ -114,6 +148,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+
 
 [[plugins]]
 repo = 'guns/xterm-color-table.vim'
