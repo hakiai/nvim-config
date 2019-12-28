@@ -70,6 +70,7 @@ hook_add = '''
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#buffer_idx_mode = 1
   let g:airline#extensions#whitespace#mixed_indent_algo = 1
+  let g:airline#extensions#tabline#fnamemod = ':t'
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -122,6 +123,17 @@ repo = 'cohama/lexima.vim' # カッコ補完
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim' # 補完
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#auto_complete_delay = 0
+  let g:deoplete#auto_complete_start_length = 1
+  let g:deoplete#enable_camel_case = 0
+  let g:deoplete#enable_ignore_case = 0
+  let g:deoplete#enable_refresh_always = 0
+  let g:deoplete#enable_smart_case = 1
+  let g:deoplete#file#enable_buffer_path = 1
+  let g:deoplete#max_list = 10000
+'''
 
 [[plugins]]
 repo = 'Shougo/deoplete-lsp' # 補完をLSPと連携
@@ -148,6 +160,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+hook_add = '''
+  nnoremap git :Git
+'''
 
 
 [[plugins]]
@@ -157,16 +172,16 @@ repo = 'guns/xterm-color-table.vim'
 [[plugins]]
 repo ="kristijanhusak/defx-git"
 hook_add = '''
-call defx#custom#column('git', 'indicators', {
-  \ 'Modified'  : '✹',
-  \ 'Staged'    : '✚',
-  \ 'Untracked' : '✭',
-  \ 'Renamed'   : '➜',
-  \ 'Unmerged'  : '═',
-  \ 'Ignored'   : '☒',
-  \ 'Deleted'   : '✖',
-  \ 'Unknown'   : '?'
-  \ })
+  call defx#custom#column('git', 'indicators', {
+    \ 'Modified'  : '✹',
+    \ 'Staged'    : '✚',
+    \ 'Untracked' : '✭',
+    \ 'Renamed'   : '➜',
+    \ 'Unmerged'  : '═',
+    \ 'Ignored'   : '☒',
+    \ 'Deleted'   : '✖',
+    \ 'Unknown'   : '?'
+    \ })
 '''
 
 [[plugins]]
@@ -177,7 +192,7 @@ repo ="kristijanhusak/defx-icons"
 repo = 'Shougo/defx.nvim'
 depends = ['defx-git', 'defx-icons']
 hook_add = '''
-nnoremap sd :Defx<CR>
+  nnoremap sd :Defx<CR>
   call defx#custom#column('icon', {
         \ 'directory_icon': '▸',
         \ 'opened_icon': '▾',
@@ -214,7 +229,7 @@ nnoremap sd :Defx<CR>
     nnoremap <silent><buffer><expr> N defx#do_action('new_directory')
     nnoremap <silent><buffer><expr> n defx#do_action('new_file')
     nnoremap <silent><buffer><expr> M defx#do_action('new_multiple_files')
-    nnoremap <silent><buffer><expr> C defx#do_action('toggle_columns', 'mark:indent:icon:filename:type:size:time')
+    nnoremap <silent><buffer><expr> C defx#do_action('toggle_columns', 'mark:indent:icon:filename:type:size:time'
     nnoremap <silent><buffer><expr> S defx#do_action('toggle_sort', 'time')
     nnoremap <silent><buffer><expr> d defx#do_action('remove')
     nnoremap <silent><buffer><expr> r defx#do_action('rename')

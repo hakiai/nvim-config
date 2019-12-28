@@ -50,7 +50,10 @@ set ruler "カーソル位置を表示
 syntax on "コードに色をつける
 colorscheme pablo
 highlight Pmenu ctermbg=17
+highlight Pmenu ctermfg=14
 highlight Search ctermfg=17
+highlight PmenuSel ctermbg=45
+highlight PmenuSel ctermfg=17
 
 
 "===== 文字、カーソル設定 =====
@@ -65,7 +68,8 @@ set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮ "不可視文字の指�
 set whichwrap=b,s,h,l,<,>,[,],~ "行頭、行末で行のカーソル移動を可能にする
 set backspace=indent,eol,start "バックスペースでの行移動を可能にする
 set nocursorline "カーソル行を強調表示しない
-autocmd InsertEnter,InsertLeave * set cursorline! "インサートモードの時のみ、行をハイライトする
+autocmd InsertEnter * set cursorline "インサートモードの時のみ、行をハイライトする
+autocmd InsertLeave * set cursorline!
 "モードによってカーソルの形を変える
 let &t_ti.="\e[1 q"
 let &t_SI.="\e[5 q"
@@ -92,11 +96,11 @@ noremap k gk
 
 
 "ノーマルモード
-nnoremap <CR> A<CR><ESC>
-nnoremap J 10j
-nnoremap K 10k
-nnoremap H ^
-nnoremap L $
+noremap <CR> A<CR><ESC>
+noremap <C-j> 10j
+noremap <C-k> 10k
+noremap <C-h> ^
+noremap <C-l> $
 nnoremap ss :split<Return><C-w>w
 nnoremap sv :vsplit<Return><C-w>w
 noremap sh <C-w>h
@@ -138,13 +142,13 @@ set autoread "編集中のファイルが変更されたら自動で読み直す
 set hidden "バッファが編集中でもそのほかのファイルを開けるようにする
 
 "補完機能
-set completeopt=menuone
-for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-  exec "imap <expr> " . k . " pumvisible() ? '" . k . "' : '" . k . "\<C-X>\<C-P>\<C-N>'"
-endfor
+" set completeopt=menuone
+" for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
+"   exec "imap <expr> " . k . " pumvisible() ? '" . k . "' : '" . k . "\<C-X>\<C-P>\<C-N>'"
+" endfor
 
 "モード切り替えを早く
-set ttimeoutlen=1
+set ttimeoutlen=0
 
 "クリップボード共有
 set clipboard=unnamed
@@ -157,6 +161,6 @@ augroup MyIMEGroup
 augroup END
 
 "python path
-let g:python_host_prog='~/.pyenv/versions/neovim-2/bin/python'
-let g:python3_host_prog='~/.pyenv/versions/neovim-3/bin/python'
+let g:python_host_prog = expand('~/.pyenv/versions/neovim-2/bin/python')
+let g:python3_host_prog = expand('~/.pyenv/versions/neovim-3/bin/python')
 
