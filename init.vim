@@ -129,6 +129,11 @@ inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <C-d> <Delete>
 
+" ヴィジュアルモード
+vnoremap ; :
+vnoremap : ;
+
+
 "jキーを二度押しでESCキー
 inoremap <silent> jj <Esc>
 inoremap <silent> っj <ESC>

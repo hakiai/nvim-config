@@ -161,7 +161,7 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = '''
-  nnoremap git :Git
+  nnoremap git :G
 '''
 
 
@@ -192,7 +192,7 @@ repo ="kristijanhusak/defx-icons"
 repo = 'Shougo/defx.nvim'
 depends = ['defx-git', 'defx-icons']
 hook_add = '''
-  nnoremap sd :Defx<CR>
+  nnoremap <silent>sd :Defx<CR>
   call defx#custom#column('icon', {
         \ 'directory_icon': '▸',
         \ 'opened_icon': '▾',
@@ -252,7 +252,12 @@ hook_add = '''
   endfunction
 '''
 
-[[plugins]]
+[[plugins]] # 検索形プラグイン
 repo = 'Shougo/denite.nvim'
 
+[[plugins]] # Visualモードで選択した範囲で検索できるようにする
+repo = 'thinca/vim-visualstar'
+
+[[plugins]] # 色コードを視覚化
+repo = 'vim-coloresque'
 
