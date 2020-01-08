@@ -82,6 +82,7 @@ endif
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes' #vim-airlineテーマ
 hook_add = '''
+let g:airline_theme = 'papercolor'
 '''
 
 
@@ -184,6 +185,7 @@ hook_add = '''
     \ })
 '''
 
+
 [[plugins]]
 repo ="kristijanhusak/defx-icons"
 
@@ -252,12 +254,23 @@ hook_add = '''
   endfunction
 '''
 
+
 [[plugins]] # 検索形プラグイン
 repo = 'Shougo/denite.nvim'
+
 
 [[plugins]] # Visualモードで選択した範囲で検索できるようにする
 repo = 'thinca/vim-visualstar'
 
+
 [[plugins]] # 色コードを視覚化
-repo = 'vim-coloresque'
+repo = 'gko/vim-coloresque'
+
+
+[[plugins]]
+repo = 'simeji/winresizer'
+hook_add = '''
+  nmap <silent>se <C-e>
+'''
+
 
