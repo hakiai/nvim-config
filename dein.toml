@@ -1,24 +1,23 @@
-[[plugins]]
-repo = 'ryanoasis/vim-devicons' # ファイルアイコン
+[[plugins]] # ファイルアイコン
+repo = 'ryanoasis/vim-devicons' 
+
+# [[plugins]] # IDEっぽいファイラ
+# repo = 'scrooloose/nerdtree' 
+# hook_add = '''
+#   nnoremap <silent>sf :NERDTreeToggle<CR>
+# '''
 
 
-[[plugins]]
-repo = 'scrooloose/nerdtree' # IDEっぽいファイラ
-hook_add = '''
-  nnoremap <silent>sf :NERDTreeToggle<CR>
-'''
+# [[plugins]] # nerdtreeにGitの表示を追加
+# repo = 'Xuyuanp/nerdtree-git-plugin'
 
 
-[[plugins]]
-repo = 'Xuyuanp/nerdtree-git-plugin' # nerdtreeにGitの表示を追加
+[[plugins]] # fzf.vimの依存関係
+repo = '/usr/local/opt/fzf'
 
 
-[[plugins]]
-repo = '/usr/local/opt/fzf' # fzf.vimの依存関係
-
-
-[[plugins]]
-repo = 'junegunn/fzf.vim' # 曖昧検索
+[[plugins]] # 曖昧検索
+repo = 'junegunn/fzf.vim'
 hook_add = '''
   " ripgrepで検索中、?を押すとプレビュー:
   command! -bang -nargs=* Rg
@@ -47,24 +46,24 @@ hook_add = '''
 '''
 
 
-[[plugins]]
-repo = 'tpope/vim-surround' # カッコの挿入を便利に
+[[plugins]] # カッコの挿入を便利に
+repo = 'tpope/vim-surround'
 
 
-[[plugins]]
-repo = 'airblade/vim-gitgutter' # Gitの変更を表示
+[[plugins]] # Gitの変更を表示
+repo = 'airblade/vim-gitgutter'
 
 
-[[plugins]]
-repo = 'tpope/vim-repeat' # ドットによるリピートを強力にする
+[[plugins]] # ドットによるリピートを強力にする
+repo = 'tpope/vim-repeat'
 
 
-[[plugins]]
-repo = 'tpope/vim-commentary' # gccで一気にコメントアウト
+[[plugins]] # gccで一気にコメントアウト
+repo = 'tpope/vim-commentary'
 
 
-[[plugins]]
-repo = 'vim-airline/vim-airline' # ステータスバーをいい感じに
+[[plugins]] # ステータスバーをいい感じに
+repo = 'vim-airline/vim-airline'
 hook_add = '''
   let g:airline_powerline_fonts = 1
   let g:airline#extensions#tabline#enabled = 1
@@ -79,34 +78,34 @@ endif
 '''
 
 
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes' #vim-airlineテーマ
+[[plugins]] #vim-airlineテーマ
+repo = 'vim-airline/vim-airline-themes'
 hook_add = '''
 let g:airline_theme = 'papercolor'
 '''
 
 
-[[plugins]]
-repo = 'alvan/vim-closetag' # htmlタグを閉じてくれる
+[[plugins]] # htmlタグを閉じてくれる
+repo = 'alvan/vim-closetag'
 hook_add = '''
   let g:closetag_filenames = '*.html,*.vue,*.erb,*.php'
 '''
 
 
-[[plugins]]
-repo = 'w0rp/ale' # シンタックスチェック
+[[plugins]] # シンタックスチェック
+repo = 'w0rp/ale'
 
 
-[[plugins]]
-repo = 'Yggdroot/indentLine' # インデント見やすく
+[[plugins]] # インデント見やすく
+repo = 'Yggdroot/indentLine'
 
 
-[[plugins]]
-repo = 'easymotion/vim-easymotion' # 移動プラグイン
+[[plugins]] # 移動プラグイン
+repo = 'easymotion/vim-easymotion'
 
 
-[[plugins]]
-repo = 'LeafCage/yankround.vim' # Ctrl + pで過去のクリップボード参照
+[[plugins]] # Ctrl + pで過去のクリップボード参照
+repo = 'LeafCage/yankround.vim'
 hook_add = '''
   nmap p <Plug>(yankround-p)
   nmap P <Plug>(yankround-P)
@@ -118,12 +117,12 @@ hook_add = '''
 '''
 
 
-[[plugins]]
-repo = 'cohama/lexima.vim' # カッコ補完
+[[plugins]] # カッコ補完
+repo = 'cohama/lexima.vim'
 
 
-[[plugins]]
-repo = 'Shougo/deoplete.nvim' # 補完
+[[plugins]] # 補完
+repo = 'Shougo/deoplete.nvim'
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#auto_complete_delay = 0
@@ -136,15 +135,15 @@ hook_add = '''
   let g:deoplete#max_list = 10000
 '''
 
-[[plugins]]
-repo = 'Shougo/deoplete-lsp' # 補完をLSPと連携
+[[plugins]] # 補完をLSPと連携
+repo = 'Shougo/deoplete-lsp'
 
 
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp' # LSP
+[[plugins]] # LSP
+repo = 'prabirshrestha/vim-lsp'
 
 
-[[plugins]]
+[[plugins]] # tmuxのステータスラインを生成するジェネレータ
 repo = 'edkolev/tmuxline.vim'
 hook_add = '''
   let g:tmuxline_preset = {
@@ -159,18 +158,18 @@ hook_add = '''
 '''
 
 
-[[plugins]]
+[[plugins]] # vim上でGitコマンドを実行
 repo = 'tpope/vim-fugitive'
 hook_add = '''
   nnoremap git :G
 '''
 
 
-[[plugins]]
+[[plugins]] # カラーテーブルを表示 ':XtermColorTable'
 repo = 'guns/xterm-color-table.vim'
 
 
-[[plugins]]
+[[plugins]] # defxにGitの状態を表示
 repo ="kristijanhusak/defx-git"
 hook_add = '''
   call defx#custom#column('git', 'indicators', {
@@ -186,11 +185,11 @@ hook_add = '''
 '''
 
 
-[[plugins]]
+[[plugins]] # defxにファイルアイコンを表示
 repo ="kristijanhusak/defx-icons"
 
 
-[[plugins]]
+[[plugins]] # ファイラ
 repo = 'Shougo/defx.nvim'
 depends = ['defx-git', 'defx-icons']
 hook_add = '''
@@ -267,10 +266,15 @@ repo = 'thinca/vim-visualstar'
 repo = 'gko/vim-coloresque'
 
 
-[[plugins]]
+[[plugins]] # ウィンドウ操作モード
 repo = 'simeji/winresizer'
 hook_add = '''
   nmap <silent>se <C-e>
 '''
 
 
+[[plugins]] # ヘルプを日本語か
+repo = 'vim-jp/vimdoc-ja'
+hook_add = '''
+  set helplang=ja,en
+'''
