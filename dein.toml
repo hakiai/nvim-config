@@ -1,15 +1,16 @@
 [[plugins]] # ファイルアイコン
-repo = 'ryanoasis/vim-devicons' 
-
-# [[plugins]] # IDEっぽいファイラ
-# repo = 'scrooloose/nerdtree' 
-# hook_add = '''
-#   nnoremap <silent>sf :NERDTreeToggle<CR>
-# '''
+repo = 'ryanoasis/vim-devicons'
 
 
-# [[plugins]] # nerdtreeにGitの表示を追加
-# repo = 'Xuyuanp/nerdtree-git-plugin'
+[[plugins]] # IDEっぽいファイラ
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+  nnoremap <silent>sf :NERDTreeToggle<CR>
+'''
+
+
+[[plugins]] # nerdtreeにGitの表示を追加
+repo = 'Xuyuanp/nerdtree-git-plugin'
 
 
 [[plugins]] # fzf.vimの依存関係
@@ -31,12 +32,12 @@ hook_add = '''
   command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-  nnoremap ,f :Files<CR>
-  nnoremap ,b :Buffers<CR>
-  nnoremap ,g :GFiles<CR>
-  nnoremap ,l :BLines<CR>
-  nnoremap ,a :Ag<CR>
-  nnoremap ,k :bd<CR>
+  nnoremap <silent>,f :Files<CR>
+  nnoremap <silent>,b :Buffers<CR>
+  nnoremap <silent>,g :GFiles<CR>
+  nnoremap <silent>,l :BLines<CR>
+  nnoremap <silent>,a :Ag<CR>
+  nnoremap <silent>,k :bd<CR>
   command! FZFMru call fzf#run({
     \  'source':  v:oldfiles,
     \  'sink':    'e',
@@ -93,7 +94,14 @@ hook_add = '''
 
 
 [[plugins]] # シンタックスチェック
-repo = 'w0rp/ale'
+repo = 'dense-analysis/ale'
+hook_add = '''
+  let g:ale_sign_error = '⨉'
+  let g:ale_sign_warning = '⚠'
+  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+  let g:ale_linters = {'typescript': ['tslint']}
+'''
 
 
 [[plugins]] # インデント見やすく
@@ -193,7 +201,7 @@ repo ="kristijanhusak/defx-icons"
 repo = 'Shougo/defx.nvim'
 depends = ['defx-git', 'defx-icons']
 hook_add = '''
-  nnoremap <silent>sd :Defx<CR>
+  nnoremap <silent>sd :Defx -resume<CR>
   call defx#custom#column('icon', {
         \ 'directory_icon': '▸',
         \ 'opened_icon': '▾',
@@ -251,6 +259,7 @@ hook_add = '''
     nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
     nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
   endfunction
+  autocmd VimEnter * Defx
 '''
 
 
@@ -273,8 +282,10 @@ hook_add = '''
 '''
 
 
-[[plugins]] # ヘルプを日本語か
+[[plugins]] # ヘルプを日本語化
 repo = 'vim-jp/vimdoc-ja'
 hook_add = '''
   set helplang=ja,en
 '''
+
+

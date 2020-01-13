@@ -36,7 +36,7 @@ syntax enable
 " If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
-endif 
+endif
 
 
 "===== 表示設定 =====
@@ -48,6 +48,9 @@ set visualbell "ビープ音を視覚表示
 set laststatus=2 "ステータスを表示
 set ruler "カーソル位置を表示
 syntax on "コードに色をつける
+" 全角スペースを可視化
+autocmd Colorscheme * highlight FullWidthSpace ctermbg=blue
+autocmd VimEnter * match FullWidthSpace /　/
 colorscheme pablo
 highlight Pmenu ctermbg=17
 highlight Pmenu ctermfg=14
@@ -101,8 +104,8 @@ noremap <C-j> 10j
 noremap <C-k> 10k
 noremap <C-h> ^
 noremap <C-l> $
-nnoremap ss :split<Return><C-w>w
-nnoremap sv :vsplit<Return><C-w>w
+nnoremap <silent>ss :split<Return><C-w>w
+nnoremap <silent>sv :vsplit<Return><C-w>w
 noremap sh <C-w>h
 noremap sk <C-w>k
 noremap sj <C-w>j
@@ -111,11 +114,11 @@ noremap sH <C-w>H
 noremap sK <C-w>K
 noremap sJ <C-w>J
 noremap sL <C-w>L
-nnoremap st :tabnew<Return>
-nnoremap th :tabprev<Return>
-nnoremap tl :tabnext<Return>
-nnoremap sp :bprev<CR>
-nnoremap sn :bnext<CR>
+nnoremap <silent>st :tabnew<Return>
+nnoremap <silent>th :tabprev<Return>
+nnoremap <silent>tl :tabnext<Return>
+nnoremap <silent>sp :bprev<CR>
+nnoremap <silent>sn :bnext<CR>
 nnoremap ; :
 nnoremap : ;
 nnoremap n nzz
@@ -137,6 +140,7 @@ vnoremap : ;
 "jキーを二度押しでESCキー
 inoremap <silent> jj <Esc>
 inoremap <silent> っj <ESC>
+
 
 "===== その他 =====
 "履歴を10000件保存
@@ -164,6 +168,9 @@ augroup MyIMEGroup
   autocmd!
   autocmd InsertLeave * :call system(g:imeoff)
 augroup END
+
+" 保存時に行末の空白を削除
+autocmd BufWritePre * :%s/\s\+$//e
 
 "python path
 let g:python_host_prog = expand('~/.pyenv/versions/neovim-2/bin/python')
