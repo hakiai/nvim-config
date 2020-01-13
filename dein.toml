@@ -259,7 +259,8 @@ hook_add = '''
     nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
     nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
   endfunction
-  autocmd VimEnter * Defx
+
+  autocmd VimEnter * if &filetype ==# 'nerdtree' | Defx | endif
 '''
 
 
