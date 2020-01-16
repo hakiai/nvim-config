@@ -46,11 +46,11 @@ set showmatch "括弧入力時に対応する括弧を示す
 set list "タブ、空白、改行を可視化
 set visualbell "ビープ音を視覚表示
 set laststatus=2 "ステータスを表示
-set ruler "カーソル位置を表示
+"set ruler "カーソル位置を表示
 syntax on "コードに色をつける
 " 全角スペースを可視化
 autocmd Colorscheme * highlight FullWidthSpace ctermbg=blue
-autocmd VimEnter * match FullWidthSpace /　/
+"autocmd VimEnter * match FullWidthSpace /　/
 colorscheme pablo
 highlight Pmenu ctermbg=17
 highlight Pmenu ctermfg=14
@@ -74,9 +74,9 @@ set nocursorline "カーソル行を強調表示しない
 autocmd InsertEnter * set cursorline "インサートモードの時のみ、行をハイライトする
 autocmd InsertLeave * set cursorline!
 "モードによってカーソルの形を変える
-let &t_ti.="\e[1 q"
-let &t_SI.="\e[5 q"
-let &t_EI.="\e[1 q"
+let &t_ti.="\e[2 q"
+let &t_SI.="\e[6 q"
+let &t_EI.="\e[2 q"
 let &t_te.="\e[0 q"
 
 
@@ -119,11 +119,12 @@ nnoremap <silent>th :tabprev<Return>
 nnoremap <silent>tl :tabnext<Return>
 nnoremap <silent>sp :bprev<CR>
 nnoremap <silent>sn :bnext<CR>
-nnoremap ; :
-nnoremap : ;
+" nnoremap ; :
+" nnoremap : ;
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap x "_x
+nnoremap <silent><Leader>n :noh<CR>
 
 "インサートモード
 inoremap <C-n> <Down>
@@ -131,10 +132,16 @@ inoremap <C-p> <Up>
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <C-d> <Delete>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
 
 " ヴィジュアルモード
-vnoremap ; :
-vnoremap : ;
+vnoremap <C-j> 10j
+vnoremap <C-k> 10k
+vnoremap <C-h> ^
+vnoremap <C-l> $
+" vnoremap ; :
+" vnoremap : ;
 
 
 "jキーを二度押しでESCキー
@@ -158,6 +165,7 @@ set hidden "バッファが編集中でもそのほかのファイルを開け�
 
 "モード切り替えを早く
 set ttimeoutlen=0
+set updatetime=100
 
 "クリップボード共有
 set clipboard=unnamed
@@ -170,7 +178,7 @@ augroup MyIMEGroup
 augroup END
 
 " 保存時に行末の空白を削除
-autocmd BufWritePre * :%s/\s\+$//e
+" autocmd BufWritePre * :%s/\s\+$//e
 
 "python path
 let g:python_host_prog = expand('~/.pyenv/versions/neovim-2/bin/python')
