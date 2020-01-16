@@ -119,8 +119,8 @@ nnoremap <silent>th :tabprev<Return>
 nnoremap <silent>tl :tabnext<Return>
 nnoremap <silent>sp :bprev<CR>
 nnoremap <silent>sn :bnext<CR>
-" nnoremap ; :
-" nnoremap : ;
+nnoremap ; :
+nnoremap : ;
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap x "_x
@@ -140,8 +140,8 @@ vnoremap <C-j> 10j
 vnoremap <C-k> 10k
 vnoremap <C-h> ^
 vnoremap <C-l> $
-" vnoremap ; :
-" vnoremap : ;
+vnoremap ; :
+vnoremap : ;
 
 
 "jキーを二度押しでESCキー
