@@ -293,3 +293,9 @@ hook_add = '''
 '''
 
 
+[[plugins]] # nvim上でターミナル起動
+repo = 'kassio/neoterm'
+hook_add = '''
+  nnoremap <C-t> :Ttoggle<CR>
+  tnoremap <C-t> <C-\><C-n>:Ttoggle<CR>
+'''
