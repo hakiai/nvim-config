@@ -292,8 +292,3 @@ hook_add = '''
   set helplang=ja,en
 '''
 
-
-[[plugins]] # nvim上でターミナル起動
-repo = 'kassio/neoterm'
-hook_add = '''
-'''
