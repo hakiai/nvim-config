@@ -57,6 +57,7 @@ highlight Pmenu ctermfg=14
 highlight Search ctermfg=17
 highlight PmenuSel ctermbg=45
 highlight PmenuSel ctermfg=17
+highlight Special ctermfg=87
 
 
 "===== 文字、カーソル設定 =====
@@ -71,8 +72,6 @@ set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮ "不可視文字の指�
 set whichwrap=b,s,h,l,<,>,[,],~ "行頭、行末で行のカーソル移動を可能にする
 set backspace=indent,eol,start "バックスペースでの行移動を可能にする
 set nocursorline "カーソル行を強調表示しない
-autocmd InsertEnter * set cursorline "インサートモードの時のみ、行をハイライトする
-autocmd InsertLeave * set cursorline!
 "モードによってカーソルの形を変える
 let &t_ti.="\e[2 q"
 let &t_SI.="\e[6 q"
@@ -164,21 +163,63 @@ set hidden "バッファが編集中でもそのほかのファイルを開け�
 " endfor
 
 "モード切り替えを早く
-set ttimeoutlen=0
-set updatetime=100
+set timeout timeoutlen=1000 ttimeoutlen=50
+set updatetime=0
 
 "クリップボード共有
 set clipboard=unnamed
 
 " ノーマルモードに入るとIME off
-let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
-augroup MyIMEGroup
-  autocmd!
-  autocmd InsertLeave * :call system(g:imeoff)
-augroup END
+" let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
+" augroup MyIMEGroup
+"   autocmd!
+"   autocmd InsertLeave * :call system(g:imeoff)
+" augroup END
 
 " 保存時に行末の空白を削除
 " autocmd BufWritePre * :%s/\s\+$//e
+
+
+" ====== :SyntaxInfoでハイライトグループを見る ======
+function! s:get_syn_id(transparent)
+  let synid = synID(line("."), col("."), 1)
+  if a:transparent
+    return synIDtrans(synid)
+  else
+    return synid
+  endif
+endfunction
+function! s:get_syn_attr(synid)
+  let name = synIDattr(a:synid, "name")
+  let ctermfg = synIDattr(a:synid, "fg", "cterm")
+  let ctermbg = synIDattr(a:synid, "bg", "cterm")
+  let guifg = synIDattr(a:synid, "fg", "gui")
+  let guibg = synIDattr(a:synid, "bg", "gui")
+  return {
+    \ "name": name,
+    \ "ctermfg": ctermfg,
+    \ "ctermbg": ctermbg,
+    \ "guifg": guifg,
+    \ "guibg": guibg}
+endfunction
+function! s:get_syn_info()
+  let baseSyn = s:get_syn_attr(s:get_syn_id(0))
+  echo "name: " . baseSyn.name .
+    \ " ctermfg: " . baseSyn.ctermfg .
+    \ " ctermbg: " . baseSyn.ctermbg .
+    \ " guifg: " . baseSyn.guifg .
+    \ " guibg: " . baseSyn.guibg
+  let linkedSyn = s:get_syn_attr(s:get_syn_id(1))
+  echo "link to"
+  echo "name: " . linkedSyn.name .
+    \ " ctermfg: " . linkedSyn.ctermfg .
+    \ " ctermbg: " . linkedSyn.ctermbg .
+    \ " guifg: " . linkedSyn.guifg .
+    \ " guibg: " . linkedSyn.guibg
+endfunction
+command! SyntaxInfo call s:get_syn_info()
+
+"=======================================================
 
 "python path
 let g:python_host_prog = expand('~/.pyenv/versions/neovim-2/bin/python')

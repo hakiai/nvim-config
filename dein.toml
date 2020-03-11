@@ -107,7 +107,14 @@ hook_add = '''
 [[plugins]] # インデント見やすく
 repo = 'Yggdroot/indentLine'
 hook_add = '''
-  let g:indentLine_fileTypeExclude = ['json']
+  set conceallevel=0
+  let g:vim_json_syntax_conceal = 0
+'''
+
+[[plugins]] # indentLineによってJSONの"が消える問題を解決
+repo = 'elzr/vim-json'
+hook_add = '''
+  let g:vim_json_syntax_conceal = 0
 '''
 
 [[plugins]] # 移動プラグイン
@@ -205,7 +212,7 @@ repo ="kristijanhusak/defx-icons"
 repo = 'Shougo/defx.nvim'
 depends = ['defx-git', 'defx-icons']
 hook_add = '''
-  nnoremap <silent>sd :Defx -resume<CR>
+  nnoremap <silent>sd :<C-u>Defx -new `expand('%:p:h')` -search=`expand('%:p')`<CR>
   call defx#custom#column('icon', {
         \ 'directory_icon': '▸',
         \ 'opened_icon': '▾',
@@ -227,7 +234,6 @@ hook_add = '''
         \ 'show_ignored_files': 1,
         \ })
 
-  nnoremap <silent>fi :<C-u>Defx -new `expand('%:p:h')` -search=`expand('%:p')`<CR>
   autocmd FileType defx call s:defx_my_settings()
   function! s:defx_my_settings() abort
     " Define mappings
@@ -265,7 +271,7 @@ hook_add = '''
     nnoremap <silent><buffer><expr> <CR> defx#do_action('drop')
   endfunction
 
-  autocmd VimEnter * if &filetype ==# 'nerdtree' | Defx | endif
+  autocmd VimEnter * if &filetype ==# 'nerdtree' | Defx -new `expand('%:p:h')` -search=`expand('%:p')` | endif
 '''
 
 
@@ -293,4 +299,3 @@ repo = 'vim-jp/vimdoc-ja'
 hook_add = '''
   set helplang=ja,en
 '''
-

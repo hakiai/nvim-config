@@ -1,7 +1,7 @@
 # ===== JavaScript =====
 [[plugins]] # prettier
 repo = 'prettier/vim-prettier'
-on_ft = ['javascript', 'typescript', 'vue', 'css', 'scss', 'json', 'markdown']
+on_ft = ['javascript', 'typescript', 'vue', 'css', 'scss', 'json', 'markdown', 'twig']
 hook_add = '''
   nnoremap <Leader>p :Prettier<CR>
   let g:ale_fixers = {
@@ -31,3 +31,9 @@ on_ft = ['python']
 [[plugins]] # toml syntax
 repo = 'cespare/vim-toml'
 on_ft = ['toml']
+
+
+# ===== twig =====
+[[plugins]] # twig syntax
+repo = 'nelsyeung/twig.vim'
+on_ft = ['twig']
