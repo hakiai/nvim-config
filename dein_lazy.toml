@@ -37,3 +37,13 @@ on_ft = ['toml']
 [[plugins]] # twig syntax
 repo = 'nelsyeung/twig.vim'
 on_ft = ['twig']
+# ===== PHP =====
+
+[[plugins]] # PHP syntax
+repo = 'phpactor/phpactor'
+on_ft = ['php']
+
+
+[[plugins]] # phpactorをdeopleteで使用するための依存関係
+repo = 'kristijanhusak/deoplete-phpactor'
+on_ft = ['php']
