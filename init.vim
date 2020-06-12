@@ -30,9 +30,6 @@ endif
 
 call map(dein#check_clean(), "delete(v:val, 'rf')")
 
-filetype plugin indent on
-syntax enable
-
 " If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
@@ -44,20 +41,19 @@ set number "番号の表示
 set title "編集中ファイル名の表示
 set showmatch "括弧入力時に対応する括弧を示す
 set list "タブ、空白、改行を可視化
-set visualbell "ビープ音を視覚表示
 set laststatus=2 "ステータスを表示
 "set ruler "カーソル位置を表示
-syntax on "コードに色をつける
-" 全角スペースを可視化
-autocmd Colorscheme * highlight FullWidthSpace ctermbg=blue
-"autocmd VimEnter * match FullWidthSpace /　/
+filetype plugin indent on
+syntax enable
 colorscheme pablo
+" 色味表: XtermColorTable
 highlight Pmenu ctermbg=17
 highlight Pmenu ctermfg=14
 highlight Search ctermfg=17
 highlight PmenuSel ctermbg=45
 highlight PmenuSel ctermfg=17
 highlight Special ctermfg=87
+highlight MatchParen ctermbg=93
 
 
 "===== 文字、カーソル設定 =====
@@ -124,6 +120,7 @@ nnoremap n nzz
 nnoremap N Nzz
 nnoremap x "_x
 nnoremap <silent><Leader>n :noh<CR>
+nnoremap <C-f> l
 
 "インサートモード
 inoremap <C-n> <Down>
@@ -156,29 +153,17 @@ set noswapfile "スワップファイルを作らない
 set autoread "編集中のファイルが変更されたら自動で読み直す
 set hidden "バッファが編集中でもそのほかのファイルを開けるようにする
 
-"補完機能
-" set completeopt=menuone
-" for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-"   exec "imap <expr> " . k . " pumvisible() ? '" . k . "' : '" . k . "\<C-X>\<C-P>\<C-N>'"
-" endfor
-
 "モード切り替えを早く
 set timeout timeoutlen=1000 ttimeoutlen=50
-set updatetime=0
 
 "クリップボード共有
 set clipboard=unnamed
 
-" ノーマルモードに入るとIME off
-" let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
-" augroup MyIMEGroup
-"   autocmd!
-"   autocmd InsertLeave * :call system(g:imeoff)
-" augroup END
-
 " 保存時に行末の空白を削除
-" autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
+" markdownでバッククオートを表示する
+let g:vim_markdown_conceal = 0
 
 " ====== :SyntaxInfoでハイライトグループを見る ======
 function! s:get_syn_id(transparent)
@@ -221,7 +206,7 @@ command! SyntaxInfo call s:get_syn_info()
 
 "=======================================================
 
-"python path
+" python path
 let g:python_host_prog = expand('~/.pyenv/versions/neovim-2/bin/python')
 let g:python3_host_prog = expand('~/.pyenv/versions/neovim-3/bin/python')
 
