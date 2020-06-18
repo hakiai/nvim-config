@@ -10,3 +10,10 @@ hook_add = '''
   \}
 '''
 
+# ======================
+
+# ===== Flutter =====
+[[plugins]]
+repo = 'reisub0/hot-reload.vim'
+on_ft = ['dart']
+# ====================
