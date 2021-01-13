@@ -44,6 +44,10 @@ set list "タブ、空白、改行を可視化
 set laststatus=2 "ステータスを表示
 "set ruler "カーソル位置を表示
 filetype plugin indent on
+set synmaxcol=200
+set re=1
+" set lazyredraw
+set ttyfast
 syntax enable
 colorscheme pablo
 " 色味表: XtermColorTable
@@ -54,6 +58,7 @@ highlight PmenuSel ctermbg=45
 highlight PmenuSel ctermfg=17
 highlight Special ctermfg=87
 highlight MatchParen ctermbg=93
+highlight CursorColumn ctermbg=91
 
 
 "===== 文字、カーソル設定 =====
@@ -121,6 +126,8 @@ nnoremap N Nzz
 nnoremap x "_x
 nnoremap <silent><Leader>n :noh<CR>
 nnoremap <C-f> l
+"python3実行
+nnoremap <silent><Leader><Leader>p :!python3 %<CR>
 
 "インサートモード
 inoremap <C-n> <Down>
@@ -138,11 +145,6 @@ vnoremap <C-h> ^
 vnoremap <C-l> $
 vnoremap ; :
 vnoremap : ;
-
-
-"jキーを二度押しでESCキー
-inoremap <silent> jj <Esc>
-inoremap <silent> っj <ESC>
 
 
 "===== その他 =====

@@ -58,7 +58,8 @@ repo = 'tpope/vim-repeat'
 
 [[plugins]] # gccで一気にコメントアウト
 repo = 'tpope/vim-commentary'
-
+hook_add = '''
+'''
 
 [[plugins]] # ステータスバーをいい感じに
 repo = 'itchyny/lightline.vim'
@@ -90,7 +91,8 @@ hook_add = '''
 [[plugins]] # htmlタグを閉じてくれる
 repo = 'alvan/vim-closetag'
 hook_add = '''
-  let g:closetag_filenames = '*.html,*.vue,*.erb,*.php'
+  let g:closetag_filenames = '*.html,*.vue,*.erb,*.php,*.twig,*.js,*.ts,*.jsx'
+  let g:closetag_filetypes = 'html,vue,erb,php,twig,js,ts,jsx'
 '''
 
 
@@ -204,6 +206,8 @@ hook_add = '''
         \ })
 
   autocmd FileType defx call s:defx_my_settings()
+  autocmd BufWritePost * call defx#redraw()
+  autocmd BufEnter * call defx#redraw()
   function! s:defx_my_settings() abort
     " Define mappings
     nnoremap <silent><buffer><expr> <CR> defx#do_action('open')
@@ -275,6 +279,10 @@ hook_add = '''
 
 [[plugins]] # syntaxパッケージ
 repo = 'sheerun/vim-polyglot'
+
+
+[[plugins]] # editorconfig
+repo = "editorconfig/editorconfig-vim"
 
 
 [[plugins]] # LSP
