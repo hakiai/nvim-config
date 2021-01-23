@@ -1,13 +1,74 @@
+[[plugins]] # ファイラ
+repo = 'lambdalisue/fern.vim'
+hook_add = '''
+let g:fern#default_hidden = 1
+let g:fern#disable_default_mappings = 1
+
+nnoremap <silent>so :Fern . -reveal=%<CR>
+
+function! s:init_fern() abort
+  " Write custom code here
+  nmap <buffer>c <Plug>(fern-action-clipboard-copy)
+  nmap <buffer>m <Plug>(fern-action-clipboard-move)
+  nmap <buffer>p <Plug>(fern-action-clipboard-paste)
+  nmap <buffer>r <Plug>(fern-action-rename)
+  nmap <buffer>n <Plug>(fern-action-new-path)
+  nmap <buffer>d <Plug>(fern-action-remove)
+  nmap <buffer>l <Plug>(fern-action-open)
+  nmap <buffer>h <Plug>(fern-action-leave)
+  nmap <buffer><C-l> <Plug>(fern-action-open-or-expand)
+  nmap <buffer>o <Plug>(fern-action-open-or-expand)
+  nmap <buffer><C-h> <Plug>(fern-action-collapse)
+  nmap <buffer>i <Plug>(fern-action-collapse)
+  nnoremap <silent>si :Defx<CR>
+endfunction
+augroup my-fern
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
+'''
+
+
+[[plugins]] # デフォルトのファイラをFernに変更
+repo = 'lambdalisue/fern-hijack.vim'
+
+
+[[plugins]] # FernにGitを表示
+repo = 'lambdalisue/fern-git-status.vim'
+
+
+[[plugins]] #Fernにアイコンを表示
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+
+
+[[plugins]] #Fernにアイコンを表示
+repo = 'lambdalisue/nerdfont.vim'
+hook_add = '''
+let g:fern#renderer = 'nerdfont'
+'''
+
+
+[[plugins]]
+repo = 'lambdalisue/glyph-palette.vim'
+hook_add = '''
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
+'''
+
+
 [[plugins]] # ファイルアイコン
 repo = 'ryanoasis/vim-devicons'
 
 
-[[plugins]] # nerdtree
-repo = 'preservim/nerdtree'
+# [[plugins]] # nerdtree
+# repo = 'preservim/nerdtree'
 
 
-[[plugins]] # nerdtreeにGitの表示を追加
-repo = 'Xuyuanp/nerdtree-git-plugin'
+# [[plugins]] # nerdtreeにGitの表示を追加
+# repo = 'Xuyuanp/nerdtree-git-plugin'
 
 
 [[plugins]] # fzf.vimの依存関係
@@ -35,6 +96,7 @@ hook_add = '''
   nnoremap <silent>,l :BLines<CR>
   nnoremap <silent>,a :Ag<CR>
   nnoremap <silent>,k :bd<CR>
+  nnoremap <silent>,d :CocCommand fzf-preview.GitStatus<CR>
   command! FZFMru call fzf#run({
     \  'source':  v:oldfiles,
     \  'sink':    'e',
@@ -246,13 +308,9 @@ hook_add = '''
   endfunction
 
   autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Defx | endif
+  autocmd VimEnter * if &filetype ==# 'fern' && !exists("s:std_in") | Defx | endif
 
 '''
-
-
-[[plugins]] # 検索形プラグイン
-repo = 'Shougo/denite.nvim'
 
 
 [[plugins]] # Visualモードで選択した範囲で検索できるようにする
@@ -285,12 +343,26 @@ repo = 'sheerun/vim-polyglot'
 repo = "editorconfig/editorconfig-vim"
 
 
+# [[plugins]]
+# repo = 'nathanaelkane/vim-indent-guides' # インデントの深さによって色分
+# hook_add = '''
+#   let g:indent_guides_enable_on_vim_startup = 1
+#   let g:indent_guides_guide_size = 1
+#   let g:indent_guides_auto_colors = 0
+#   let g:indent_guides_start_level = 2
+#   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=23
+#   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=25
+# '''
+
+
 [[plugins]] # LSP
 repo = "neoclide/coc.nvim"
 merge = 0
 rev = "release"
 
 hook_add = '''
+" .venvがあるディレクトリをルートとする
+autocmd FileType python let b:coc_root_patterns = ['.git', '.venv']
 " TextEdit might fail if hidden is not set.
 set hidden
 
