@@ -20,7 +20,7 @@ function! s:init_fern() abort
   nmap <buffer>o <Plug>(fern-action-open-or-expand)
   nmap <buffer><C-h> <Plug>(fern-action-collapse)
   nmap <buffer>i <Plug>(fern-action-collapse)
-  nnoremap <silent>si :Defx<CR>
+  nnoremap <buffer>si :Defx<CR>
 endfunction
 augroup my-fern
   autocmd! *
