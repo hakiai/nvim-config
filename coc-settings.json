@@ -2,11 +2,8 @@
   "suggest.noselect": true,
   "suggest.preferCompleteThanJumpPlaceholder": true,
   "languageserver": {
-    "dockerfile": {
-      "command": "docker-langserver",
-      "filetypes": ["dockerfile"],
-      "args": ["--stdio"]
-    }
   },
-  "python.jediEnabled": false
+  "python.jediEnabled": false,
+  "python.formatting.provider": "black",
+  "solargraph.formatting": true
 }

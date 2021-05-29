@@ -20,7 +20,7 @@ function! s:init_fern() abort
   nmap <buffer>o <Plug>(fern-action-open-or-expand)
   nmap <buffer><C-h> <Plug>(fern-action-collapse)
   nmap <buffer>i <Plug>(fern-action-collapse)
-  nnoremap <buffer>si :Defx<CR>
+  nnoremap <buffer>si :Defx -new<CR>
 endfunction
 augroup my-fern
   autocmd! *
@@ -89,14 +89,20 @@ hook_add = '''
   " Filesコマンドにもプレビューを出す
   command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+  " RipGrepにもプレビューを出す
+  command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+    \   fzf#vim#with_preview(), <bang>0)
 
-  nnoremap <silent>,f :Files<CR>
-  nnoremap <silent>,b :Buffers<CR>
-  nnoremap <silent>,g :GFiles<CR>
-  nnoremap <silent>,l :BLines<CR>
-  nnoremap <silent>,a :Ag<CR>
-  nnoremap <silent>,k :bd<CR>
-  nnoremap <silent>,d :CocCommand fzf-preview.GitStatus<CR>
+  nnoremap <silent>sf :Files<CR>
+  nnoremap <silent>sb :Buffers<CR>
+  nnoremap <silent>sg :GFiles<CR>
+  nnoremap <silent>sw :BLines<CR>
+  nnoremap <silent>sr :Ag<CR>
+  nnoremap <silent>sa :Rg<CR>
+  nnoremap <silent>sk :bd<CR>
+  nnoremap <silent>sd :CocCommand fzf-preview.GitStatus<CR>
   command! FZFMru call fzf#run({
     \  'source':  v:oldfiles,
     \  'sink':    'e',
@@ -153,8 +159,8 @@ hook_add = '''
 [[plugins]] # htmlタグを閉じてくれる
 repo = 'alvan/vim-closetag'
 hook_add = '''
-  let g:closetag_filenames = '*.html,*.vue,*.erb,*.php,*.twig,*.js,*.ts,*.jsx'
-  let g:closetag_filetypes = 'html,vue,erb,php,twig,js,ts,jsx'
+  let g:closetag_filenames = '*.html,*.vue,*.erb,*.php,*.twig,*.js,*.ts,*.jsx,*.tsx'
+  let g:closetag_filetypes = 'html,vue,erb,php,twig,js,ts,jsx,tsx'
 '''
 
 
@@ -244,7 +250,7 @@ repo ="kristijanhusak/defx-icons"
 repo = 'Shougo/defx.nvim'
 depends = ['defx-git', 'defx-icons']
 hook_add = '''
-  nnoremap <silent>sd :<C-u>Defx<CR>
+  nnoremap <silent>sd :<C-u>Defx -new<CR>
   nnoremap <silent>si :<C-u>Defx -new `expand('%:p:h')` -search=`expand('%:p')`<CR>
   call defx#custom#column('icon', {
         \ 'directory_icon': '▸',

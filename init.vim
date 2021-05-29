@@ -45,7 +45,7 @@ set laststatus=2 "ステータスを表示
 "set ruler "カーソル位置を表示
 filetype plugin indent on
 set synmaxcol=200
-set re=1
+set re=0 "シンタックスハイライトするときの正規表現エンジンの切り替え
 " set lazyredraw
 set ttyfast
 syntax enable
@@ -119,8 +119,8 @@ nnoremap <silent>th :tabprev<Return>
 nnoremap <silent>tl :tabnext<Return>
 nnoremap <silent>sp :bprev<CR>
 nnoremap <silent>sn :bnext<CR>
-nnoremap ; :
-nnoremap : ;
+" nnoremap ; :
+" nnoremap : ;
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap x "_x
@@ -143,8 +143,8 @@ vnoremap <C-j> 10j
 vnoremap <C-k> 10k
 vnoremap <C-h> ^
 vnoremap <C-l> $
-vnoremap ; :
-vnoremap : ;
+" vnoremap ; :
+" vnoremap : ;
 
 
 "===== その他 =====
@@ -207,7 +207,37 @@ endfunction
 command! SyntaxInfo call s:get_syn_info()
 
 "=======================================================
+"
+" ファイルタイプtsxを認識させる
+autocmd BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
+" カレントペイン以外の背景色を変更======================
+""フォーカスしていない時の背景色(23を好きな値・色に変更)
+"let g:InactiveBackGround = 'ctermbg=0'
+
+""Neovim内でフォーカスしていないペインの背景色設定
+"execute ('hi NormalNC '.g:InactiveBackGround)
+"execute ('hi NontextNC '.g:InactiveBackGround)
+"execute ('hi SpecialkeyNC '.g:InactiveBackGround)
+"execute ('hi EndOfBufferNC '.g:InactiveBackGround)
+
+""Neovim自体からフォーカスを外したりした際の切替設定
+""(フォーカスした時の設定はcolorschemeに合わせて変更）
+"augroup ChangeBackGround
+"autocmd!
+"" フォーカスした時(colorscheme準拠に切替)
+"autocmd FocusGained * hi Normal ctermbg=234 " :hi Normalで取得した値
+"autocmd FocusGained * hi NonText ctermbg=234 " :hi NonTextで取得した値
+"autocmd FocusGained * hi SpecialKey ctermbg=234 " :hi SpecialKeyで取得した値
+"autocmd FocusGained * hi EndOfBuffer ctermbg=0 " EndOfBufferの設定は恐らくclearなのでnoneを入れる
+"" フォーカスを外した時（フォーカスしていない時の背景色に切替)
+"autocmd FocusLost * execute('hi Normal '.g:InactiveBackGround)
+"autocmd FocusLost * execute('hi NonText '.g:InactiveBackGround)
+"autocmd FocusLost * execute('hi SpecialKey '.g:InactiveBackGround)
+"autocmd FocusLost * execute('hi EndOfBuffer '.g:InactiveBackGround)
+"augroup end
+" ======================================================
 " python path
 let g:python_host_prog = expand('~/.pyenv/versions/neovim-2/bin/python')
 let g:python3_host_prog = expand('~/.pyenv/versions/neovim-3/bin/python')
